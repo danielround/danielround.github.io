@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Orologio Palestra con Logo</title>
+  <style>
+    body {
+      background-color: #f9f9f9; /* Sfondo scuro */
+      color: #dc1010; /* Testo bianco */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #logo {
+      max-width: 50%; /* Logo massimo 50% della larghezza schermo */
+      height: auto;
+      margin-bottom: 30px;
+    }
+
+    #date {
+      font-size: 3vw;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      opacity: 0.8;
+    }
+
+    #clock {
+      font-size: 10vw;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<img id="logo" src="ACF_Elite_white_red_Mask - Copia.png" alt="Logo Palestra">
+
+<div id="date">Lunedì, 8 Aprile 2025</div>
+<div id="clock">00:00:00</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+
+  let hours = now.getHours().toString().padStart(2, '0');
+  let minutes = now.getMinutes().toString().padStart(2, '0');
+  let seconds = now.getSeconds().toString().padStart(2, '0');
+
+  document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+  // Aggiorna anche la data
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = now.toLocaleDateString('it-IT', options);
+  document.getElementById('date').textContent = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
